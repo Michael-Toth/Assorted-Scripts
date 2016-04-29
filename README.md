@@ -14,4 +14,4 @@ I will list a few descriptons for some and will list descriptions for all soon.
 4.Mouse Gestures == move mouse to launch programs or  other string of commands/ operations.
 
 
-5.Voice activate spotify or ask the pc to read the waehter report.
+5.Voice activate spotify or ask the pc to read the weather report.
