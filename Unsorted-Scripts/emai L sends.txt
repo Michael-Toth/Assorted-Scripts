@@ -1,0 +1,99 @@
+CDOSYS is a built-in component in ASP. This component is used to send e-mails with ASP.
+Sending e-mail with CDOSYS
+
+CDO (Collaboration Data Objects) is a Microsoft technology that is designed to simplify the creation of messaging applications.
+
+CDOSYS is a built-in component in ASP. We will show you how to use this component to send e-mail with ASP.
+How about CDONTs?
+
+Microsoft has discontinued the use of CDONTs on Windows 2000, Windows XP and Windows 2003. If you have used CDONTs in your ASP applications, you should update the code and use the new CDO technology.
+Examples using CDOSYS
+
+Sending a text e-mail:
+<%
+Set myMail=CreateObject("CDO.Message")
+myMail.Subject="Sending email with CDO"
+myMail.From="mymail@mydomain.com"
+myMail.To="someone@somedomain.com"
+myMail.TextBody="This is a message."
+myMail.Send
+set myMail=nothing
+%>
+
+Sending a text e-mail with Bcc and CC fields:
+<%
+Set myMail=CreateObject("CDO.Message")
+myMail.Subject="Sending email with CDO"
+myMail.From="mymail@mydomain.com"
+myMail.To="someone@somedomain.com"
+myMail.Bcc="someoneelse@somedomain.com"
+myMail.Cc="someoneelse2@somedomain.com"
+myMail.TextBody="This is a message."
+myMail.Send
+set myMail=nothing
+%>
+
+Sending an HTML e-mail:
+<%
+Set myMail=CreateObject("CDO.Message")
+myMail.Subject="Sending email with CDO"
+myMail.From="mymail@mydomain.com"
+myMail.To="someone@somedomain.com"
+myMail.HTMLBody = "<h1>This is a message.</h1>"
+myMail.Send
+set myMail=nothing
+%>
+
+Sending an HTML e-mail that sends a webpage from a website:
+<%
+Set myMail=CreateObject("CDO.Message")
+myMail.Subject="Sending email with CDO"
+myMail.From="mymail@mydomain.com"
+myMail.To="someone@somedomain.com"
+myMail.CreateMHTMLBody "http://www.w3schools.com/asp/"
+myMail.Send
+set myMail=nothing
+%>
+
+Sending an HTML e-mail that sends a webpage from a file on your computer:
+<%
+Set myMail=CreateObject("CDO.Message")
+myMail.Subject="Sending email with CDO"
+myMail.From="mymail@mydomain.com"
+myMail.To="someone@somedomain.com"
+myMail.CreateMHTMLBody "file://c:/mydocuments/test.htm"
+myMail.Send
+set myMail=nothing
+%>
+
+Sending a text e-mail with an Attachment:
+<%
+Set myMail=CreateObject("CDO.Message")
+myMail.Subject="Sending email with CDO"
+myMail.From="mymail@mydomain.com"
+myMail.To="someone@somedomain.com"
+myMail.TextBody="This is a message."
+myMail.AddAttachment "c:\mydocuments\test.txt"
+myMail.Send
+set myMail=nothing
+%>
+
+Sending a text e-mail using a remote server:
+<%
+Set myMail=CreateObject("CDO.Message")
+myMail.Subject="Sending email with CDO"
+myMail.From="mymail@mydomain.com"
+myMail.To="someone@somedomain.com"
+myMail.TextBody="This is a message."
+myMail.Configuration.Fields.Item _
+("http://schemas.microsoft.com/cdo/configuration/sendusing")=2
+'Name or IP of remote SMTP server
+myMail.Configuration.Fields.Item _
+("http://schemas.microsoft.com/cdo/configuration/smtpserver")="smtp.server.com"
+'Server port
+myMail.Configuration.Fields.Item _
+("http://schemas.microsoft.com/cdo/configuration/smtpserverport")=25
+myMail.Configuration.Fields.Update
+myMail.Send
+set myMail=nothing
+%>

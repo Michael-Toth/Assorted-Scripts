@@ -1,0 +1,14 @@
+
+firefox 
+command 	               Shortcut 
+  
+Close Tab 	               Ctrl + W
+
+Open Address in New Tab 	Alt + Enter
+
+.................................................
+Symbol 	Description
+# 	Win (Windows logo key). In v1.0.48.01+, for Windows Vista and later,  
+! 	Alt
+^ 	Control
++ 	Shift

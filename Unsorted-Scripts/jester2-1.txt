@@ -1,0 +1,49 @@
+
+ WheelUp::
+ 
+ 
+
+
+
+ 
+SLEEP,500
+
+
+ 
+;
+   GetKeyState, state, LButton  ; Right mouse butt on.
+     ;if state = D
+ 
+
+ ;MsgBox DOWN
+ArrayCount = 0
+
+		  while GetKeyState("RButton")
+{
+ 
+ArrayCount += 1 
+MouseGetPos, xpos, ypos 
+Msgbox, The cursor is at X%xpos% Y%ypos%
+a = X%xpos%
+b =Y%ypos%
+ Array%ArrayCount% :=  a b
+ararerscounter += 1 ;keeps tarck of how many elemnts in array
+ MsgBox DOWNinside
+}
+
+ Loop %ArrayCount%
+     {
+ element := Array%A_Index%
+    MsgBox % "Element number " . A_Index . " is " . Array%A_Index%
+
+     }  
+   MsgBox %ararerscounter%
+
+
+ararerscounter = 0 ;setthe array count to zero
+  
+; things to do get array elements into int and math them and compare them
+     
+ 
+ 
+ 

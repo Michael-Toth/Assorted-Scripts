@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<speechMacros>
+
+<!-- Read that -->
+<command priority="3">
+  <listenFor>read that</listenFor>
+  <script language="JScript">
+    <![CDATA[
+    // Copy the selected text into the clipboard and wait 1/4 second
+    Application.SendKeys("{250 WAIT}^c{250 WAIT}");     
+    // Get the data out of the clipboard
+    var text = Application.clipboardData.getData("text");
+    Application.Speak(text);
+    ]]>
+  </script>
+</command>
+
+<command priority="2">
+  <listenFor>read [something]</listenFor>
+  <emulateRecognition>select {[something]}</emulateRecognition>
+  <waitFor seconds=".25"/>
+  <emulateRecognition>read that</emulateRecognition>
+</command>
+
+<command priority="1">
+  <listenFor>read [textInDocument]</listenFor>
+  <listenFor>read the word [textInDocument]</listenFor>
+  <emulateRecognition waitForDisambiguation="15">select {[textInDocument]}</emulateRecognition>
+  <waitFor seconds=".25"/>
+  <emulateRecognition>read that</emulateRecognition>
+</command>
+
+<command priority="0">
+  <listenFor>read *</listenFor>
+  <setTextFeedback style="warning">What was that?</setTextFeedback>
+</command>
+
+<!-- Stop Reading -->
+<command>
+  <listenFor>?please stop reading</listenFor>
+  <speak speakFlags="2">Stopped</speak>
+</command>
+
+  <!-- Time and date -->
+
+  <!-- What time is it? -->
+  <command>
+    <listenFor>what time is it</listenFor>
+    <script language="JScript">
+      <![CDATA[
+      var date = new Date();
+      var whatToSay = "It's ";
+      var hours = date.getHours();
+      var AMorPM;
+      if (date.getHours() >= 12)
+      {
+        AMorPM = " P. M.";
+        if (date.getHours() != 12)
+        {
+          hours -= 12
+        }
+      }
+      else
+      {
+        AMorPM = " A. M.";
+      }
+      whatToSay += hours;
+      if (date.getMinutes() == 0)
+      {
+        whatToSay += " o'clock";
+      }
+      else
+      {
+        if (date.getMinutes() < 10)
+        {
+          whatToSay += " o ";
+        }
+        whatToSay += " " + date.getMinutes();
+      }
+      whatToSay += AMorPM;
+      Application.Speak(whatToSay);
+      ]]>
+    </script>
+  </command>
+  <!-- What's the date -->
+  <command>
+    <listenFor>what's today's date</listenFor>
+    <listenFor>what's the date ?today</listenFor>
+    <script language="VBScript">
+      <![CDATA[
+      whatToSay = "Today is " & WeekdayName(Weekday(Now)) & " " & MonthName(Month(Now))
+      dayDate = Day(Now)
+      dayNumberText = " " & dayDate
+      whatToSay = whatToSay & " " & dayNumberText & " "
+      whatToSay = whatToSay & Year(Now)
+      Application.Speak(whatToSay)  
+      ]]>
+    </script>
+  </command>
+
+<rule name="something">
+<list>
+   <p>
+     <o>the</o>
+     <o>
+       <list>
+         <p>previous</p>
+         <p>next</p>
+       </list>
+       <o><ruleref name="1to20"/></o>
+     </o>
+     <list>
+       <p>character</p>
+       <p>characters</p>
+       <p>word</p>
+       <p>words</p>
+       <p>sentence</p>
+       <p>sentences</p>
+       <p>paragraph</p>
+       <p>paragraphs</p>
+       <p>document</p>
+     </list>
+   </p>
+</list>
+</rule>
+
+<numbers name="1to20" start="1" stop="20"/>
+</speechMacros>

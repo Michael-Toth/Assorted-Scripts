@@ -1,0 +1,25 @@
+
+
+
+    ToggleWinMinimize(TheWindowTitle)
+    {
+    SetTitleMatchMode,2
+    DetectHiddenWindows, Off
+    IfWinActive, %TheWindowTitle%
+    {
+    WinMinimize, %TheWindowTitle%
+    }
+    Else
+    {
+    IfWinExist, %TheWindowTitle%
+    {
+    WinGet, winid, ID, %TheWindowTitle%
+    DllCall("SwitchToThisWindow", "UInt", winid, "UInt", 1)
+    }
+    }
+    Return
+    }
+
+Now that you have the function, you can start using it to create your own hotkeys for specific applications with a line similar to this one, which would assign Alt+X to toggle Firefox between being minimized and active.
+
+    !x::ToggleWinMinimize("Mozilla Firefox")
