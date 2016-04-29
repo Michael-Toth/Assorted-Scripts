@@ -14,6 +14,4 @@ I will list a few descriptons for some and will list descriptions for all soon.
 4.Mouse Gestures == move mouse to launch programs or  other string of commands/ operations.
 
 
-5.Voice activate spotify or ask the pc to read the weather report.
-
-6. A Script to go through Craiglist postings to capture e-mails.
+5.Voice activate spotify or ask the pc to read the weather report.6. A Script to go through Craiglist postings to capture e-mails.
