@@ -16,4 +16,5 @@ I will list a few descriptons for some and will list descriptions for all soon.
 
 5.Voice activate spotify or ask the pc to read the weather report.
 
+
 6. A Script to go through Craiglist postings to capture e-mails.
